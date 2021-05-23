@@ -1,7 +1,7 @@
-﻿// var BaseURL = "http://localhost/Little_App_New";
+﻿var BaseURL = "http://localhost:8080/LittleApp";
 // var BaseURL = "http://localhost/litil";
 
-var BaseURL = "http://shikastudio.com/LittleApp";
+//var BaseURL = "http://shikastudio.com/LittleApp";
 $(document).ready(function () {
   var mainid = "";
 

@@ -191,9 +191,9 @@ if ($result->rowCount()) {
                                             <div class="media-body">
                                                 <h5 class="mt-0 mb-1"><?= @$row['name']; ?></h5>
                                                 <?php if ($row['type'] == "Non-Veg") { ?>
-                                                    <img class="mr-3" src="../../Little_App_New/assets/img/avatar/non-vegetarian-food-symbol.png" alt="" width="20px" height="20px" style="border-radius: 8px"> &nbsp;&#x20B9; <?= @$row['price']; ?>
+                                                    <img class="mr-3" src="../../LittleApp/assets/img/avatar/non-vegetarian-food-symbol.png" alt="" width="20px" height="20px" style="border-radius: 8px"> &nbsp;&#x20B9; <?= @$row['price']; ?>
                                                 <?php } else { ?>
-                                                    <img class="mr-3" src="../../Little_App_New//assets/img/avatar/vegetarian-food-symbol.png" alt="" width="20px" height="20px" style="border-radius: 8px"> &nbsp;&#x20B9; <?= @$row['price']; ?>
+                                                    <img class="mr-3" src="../../LittleApp//assets/img/avatar/vegetarian-food-symbol.png" alt="" width="20px" height="20px" style="border-radius: 8px"> &nbsp;&#x20B9; <?= @$row['price']; ?>
                                                 <?php    } ?>
                                             </div>
                                             <div class="col" style="padding-top: 2px;">

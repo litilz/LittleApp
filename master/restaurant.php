@@ -56,7 +56,7 @@ else
                             <div class="row">
                                 <?php if ($response == "") { ?>
                                     <div style="margin-left: 384px;">
-                                        <img src="../../Little_App_New/assets/img/avatar/no_data_found.png">
+                                        <img src="../../LittleApp/assets/img/avatar/no_data_found.png">
                                     </div>
                                 <?php   } else { ?>
 
@@ -66,14 +66,14 @@ else
 
                                             <div class="card">
                                                 <a onclick="getRestaurantinfo(<?= @$row['id']; ?>)" class="ml-3" id="mediacategoryedit" href="javascript:void(0);">
-                                                    <img src="<?= @$row['image']; ?>" class="card-img-top" alt="" style="height:173px;">
+                                                    <img src="<?= @$row['image']; ?>" class="card-img-top" alt="" style="height:173px;cursor:pointer;">
                                                 </a>
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="d-flex justify-content-between">
                                                                <span><h6 class="card-title" style="display: inline-block;color:#191d21;"><?= @$row['name']; ?></h6></span> 
-                                                               <span><i class="fas fa-edit restaurantedit" style="padding: 0 20px;color:#191d21;" id="<?= @$row['id']; ?>"></i></span> 
+                                                               <span><i class="fas fa-edit restaurantedit" style="padding: 0 20px;color:#191d21;cursor:pointer;" id="<?= @$row['id']; ?>"></i></span> 
                                                             </div>
                                                             <span class="fa fa-star checked"></span>
                                                             <span style="font-weight: 700;"><?= @$row['rating']; ?><br /></span>
@@ -190,6 +190,7 @@ else
     $(document).ready(function() {
 
         $(".restaurantedit").click(function(event) {
+            debugger;
             $('#restaurant_id').val(this.id);
             $.ajax({
                 url: BaseURL + "/actions.php",
@@ -205,11 +206,14 @@ else
                     $("#savechanges").addClass('editmode');
                     $("#restaurantname").val(response[0].name);
                     var cat = response[0].categories;
+
+                    if(cat!=null){
                     if (cat.search(',') != -1) {
                         ids = cat.split(',');
                     } else {
                         ids = [cat];
                     }
+                }
 
 
 
@@ -219,7 +223,9 @@ else
 
                     $('#restaurant_category').multiselect('refresh');
 
+                    if(cat!=null){
                     $("#restaurant_category").multiselect('select', ids);
+                    }
 
                     let itemtypeid = $('#item_type option').filter(function() {
                         return $(this).html() == response[0].type.trim();

@@ -14,7 +14,7 @@
    $id = $data->fetch;
 
    function fetchAllUserOrders($db,$id){
-        $query = "SELECT o.id,a.name,o.user_id,o.total,o.`status`,o.date_ordered,a.mobile,a.line1,a.city,a.state,a.country,a.pincode,a.landmark
+        $query = "SELECT o.id,a.name,o.user_id,o.selling,o.original,o.`status`,o.date_ordered,a.mobile,a.line1,a.city,a.state,a.country,a.pincode,a.landmark
         FROM `orders` as o INNER JOIN `address` as a ON o.address_id = a.id
         WHERE o.user_id=$id";
     $result = $db->prepare($query);

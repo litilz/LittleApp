@@ -1,15 +1,15 @@
 <?php 
   class Database {
     // DB Params
-    // private $host = 'mysql-01-litil-test.ckgh6sla2gwb.us-east-2.rds.amazonaws.com';
-    // private $db_name = 'litil';
-    // private $username = 'admin';
-    // private $password = 'litilwell';
+    private $host = 'mysql-01-litil-test.ckgh6sla2gwb.us-east-2.rds.amazonaws.com';
+    private $db_name = 'litil';
+    private $username = 'admin';
+    private $password = 'litilwell';
 
-    private $host = 'localhost';
-    private $db_name = 'little_app';
-    private $username = 'root';
-    private $password = '';
+    // private $host = 'localhost';
+    // private $db_name = 'little_app';
+    // private $username = 'root';
+    // private $password = '';
 
     private $conn;
     // DB Connect

@@ -25,6 +25,11 @@ $response = curlcall($url, $content);
         <div class="section-body">
             <div id="productinfo" class="section-body">
                 <div class="card">
+                <div>
+                        <a href="javascript:void(0)" id="back" style="float: right;padding-top: 20px;padding-right: 20px;">
+                            Back to Users
+                        </a>
+                    </div>
                     <div class="card-body">
                         <div class="card-body">
                             <div class="form-group fa-pull-left">
@@ -49,7 +54,6 @@ $response = curlcall($url, $content);
                                         <th>
                                             Status
                                         </th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,19 +64,12 @@ $response = curlcall($url, $content);
                                     <?php   } else { ?>
                                         <?php foreach ($response as $row) { ?>
                                             <tr>
-                                                <td><?= @$row['id']; ?></td>
+                                                <td><b> <a type="button" href="javascript:void(0)" name="<?= @$row['id']; ?>" value="<?= @$row['id']; ?>" id="vieworderedproduct" class="vieworderedproduct"><?= @$row['id']; ?></a></b></td>
                                                 <td><?= @$row['mobile']; ?></td>
                                                 <td style="text-align:center"><?= @$row['line1']; ?>&nbsp;<?= @$row['city']; ?>&nbsp;<br><?= @$row['state']; ?>&nbsp;<?= @$row['country']; ?>&nbsp;<?= @$row['pincode']; ?><?= @$row['landamrk']; ?>&nbsp;</td>
-                                                <td><?= @$row['total']; ?></td>
+                                                <td><?= @$row['selling']; ?></td>
                                                 <td><?= @$row['date_ordered']; ?></td>
                                                 <td><i style="color:green" aria-hidden="true"><?= @$row['status']; ?></i></td>
-                                                <td>
-                                                    <!-- <form method="POST" action="#"> -->
-                                                    <input type="hidden" name="orderId" value="<?= @$row['id']; ?>">
-                                                    <input type="hidden" name="user_id" value="<?= @$user_id ?>">
-                                                    <a type="button" href="javascript:void(0)" name="<?= @$row['id']; ?>" value="<?= @$row['id']; ?>" id="vieworderedproduct" class="vieworderedproduct">View ordered Products</a>
-                                                    <!-- </form> -->
-                                                </td>
                                             </tr>
                                     <?php   }
                                     }
@@ -121,14 +118,13 @@ $response = curlcall($url, $content);
 
 <script>
     $(".vieworderedproduct").click(function() {
-     
         var id = this.name;
         vieworderedproducts(id);
 
     });
-    // $(".vieworderedproduct").click(function() {
-    //     var id = this.name;
-    //     vieworderedproducts(id);
 
-    // });
+    $("#back").click(function() {
+            showDiv();
+            pageload("master/user.php");
+        });
 </script>

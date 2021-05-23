@@ -16,7 +16,7 @@ $response = curlcall($url, $content);
 <div>
     <section class="section">
         <div class="section-header">
-            <h1>Orders</h1>
+            <h1>Grocery Orders</h1>
 
         </div>
 
@@ -37,19 +37,18 @@ $response = curlcall($url, $content);
                                         <th>DeliveryBy</th>
                                         <th>Status</th>
                                         <th>Ordered Date</th>
-                                        <th>Invoice</th>
                                     </tr>
 
                                 </thead>
                                 <tbody>
                                     <?php if ($response == '') { ?>
                                         <tr>
-                                            <td colspan="7">No Orders To Display</td>
+                                            <td colspan="5">No Orders To Display</td>
                                         </tr>
                                     <?php   } else { ?>
                                         <?php foreach ($response as $row) { ?>
                                             <tr>
-                                                <td><b><?= @$row['id']; ?></b></td>
+                                                <td><a type="button" href="javascript:void(0)" name="<?= @$row['id']; ?>" value="<?= @$row['id']; ?>" id="vieworderedproduct" class="vieworderedproduct"><b><?= @$row['id']; ?></b></a></td>
                                                 <td><?= @$row['phone']; ?></td>
                                                 <td contenteditable="true" class="deliveryby" id="<?= @$row['id']; ?>" title="<?= @$row['deliveryby']; ?>">
                                                     <?= @$row['deliveryby']; ?>
@@ -77,6 +76,37 @@ $response = curlcall($url, $content);
             </div>
         </div>
     </section>
+    <div class="modal fade bd-example-modal-lg" id="orderedproducts" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Ordered Products</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="tblorderedproducts">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Original Price</th>
+                                <th>Selling Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tfoot style="background-color: #e3eaef;">
+
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <script>
@@ -118,5 +148,9 @@ $response = curlcall($url, $content);
         $(".deliveryby").focusout(function(e) {
             e.currentTarget.innerText = preText;
         });
+        $(".vieworderedproduct").click(function() {
+           var id = this.name;
+           vieworderedproducts(id);
+       });
     });
 </script>

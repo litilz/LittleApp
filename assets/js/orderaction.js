@@ -1,7 +1,7 @@
-// var BaseURL = "http://localhost/Little_App_New";
+var BaseURL = "http://localhost:8080/Little_App_New/";
 // var BaseURL = "http://localhost/litil";
 
-var BaseURL = "http://shikastudio.com/LittleApp";
+//var BaseURL = "http://shikastudio.com/LittleApp";
 function updateorderStatus(id, ths, type) {
   // var splitid = id.split("_");
   var status = ths.selectedOptions[0].text;
@@ -125,6 +125,7 @@ function showalladdress(userid) {
 }
 
 function vieworderedproducts(id) {
+  debugger;
   $.ajax({
     url: BaseURL + "/api/orderactions.php",
     method: "POST",
@@ -165,6 +166,54 @@ function vieworderedproducts(id) {
         });
         $("#tblorderedproducts tfoot").append(
           "<td colspan='4'> <div style='float: left; text-align: left'>Total Price: </div> <div style='float: right; margin-right: 109px'>" +
+            sum.toFixed(2) +
+            "</div></td>"
+        );
+      }
+    },
+  });
+}
+
+function vieworderedfood(id) {
+  debugger;
+  $.ajax({
+    url: BaseURL + "/api/orderactions.php",
+    method: "POST",
+    data: {
+      id: id,
+      action: "vieworderedfood",
+    },
+    dataType: "json",
+    success: function (response) {
+      $("#tblordereitems tbody").empty();
+      $("#tblordereitems tfoot").empty();
+      $("#ordereitems").modal("show");
+      if (response == "") {
+        $("#tblordereitems").append(
+          "<tr><td colspan='3'>No Data Found</td></tr>"
+        );
+      } else {
+        $.each(response, function (index, value) {
+          // $('table tfoot td').text('Total: ' + response[index].total);
+
+          $("#tblordereitems").append(
+            "<tr><td>" +
+              response[index].name +
+              "</td><td>" +
+              response[index].item_quantity +
+              "</td><td class='price'>" +
+              response[index].price +
+              "</td></tr>"
+          );
+        });
+
+        var sum = 0;
+
+        $(".price").each(function () {
+          sum += parseFloat($(this).text());
+        });
+        $("#tblordereitems tfoot").append(
+          "<td colspan='3'> <div style='float: left; text-align: left'>Total Price: </div> <div style='float: right; margin-right: 109px'>" +
             sum.toFixed(2) +
             "</div></td>"
         );

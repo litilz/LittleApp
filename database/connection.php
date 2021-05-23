@@ -3,9 +3,9 @@
 $config=require 'config.php';
 
 
-// $BaseURL="http://localhost/Little_App_New";
+$BaseURL="http://localhost:8080/LittleApp/";
 // $BaseURL="http://localhost/litil";
-$BaseURL="https://shikastudio.com/LittleApp";
+//$BaseURL="https://shikastudio.com/LittleApp";
 
       class connection{
          public $pdo;

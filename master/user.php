@@ -28,6 +28,7 @@ if (@$response['message'] == 'no data found') {
         <div class="section-body">
             <div id="productinfo" class="section-body">
                 <div class="card">
+                
                     <div class="card-body">
                         <div class="card-body">
                         <div class="form-group fa-pull-left">

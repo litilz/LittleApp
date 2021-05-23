@@ -13,7 +13,7 @@ $response = curlcall($url, $content);
 <div>
     <section class="section">
         <div class="section-header">
-            <h1>Media Orders</h1>
+            <h1>Restaurant Orders</h1>
         </div>
 
         <div class="section-body">
@@ -33,22 +33,21 @@ $response = curlcall($url, $content);
                                         <th>DeliveryBy</th>
                                         <th>Status</th>
                                         <th>Ordered Date</th>
-                                        <th>Invoice</th>
                                     </tr>
 
                                 </thead>
                                 <tbody>
                                     <?php if ($response == '') { ?>
                                         <tr>
-                                            <td colspan="7">No Media Orders to Display</td>
+                                            <td colspan="5">No Media Orders to Display</td>
                                         </tr>
                                     <?php   } else { ?>
                                         <?php foreach ($response as $row) { ?>
                                             <tr>
-                                                <td><b><?= @$row['id']; ?></b></td>
+                                                <td><a type="button" href="javascript:void(0)" name="<?= @$row['id']; ?>" value="<?= @$row['id']; ?>" id="vieworderedproduct" class="vieworderedproduct"><b><?= @$row['id']; ?></b></a></td>
                                                 <td><?= @$row['phone']; ?></td>
                                                 <td contenteditable="true" class="deliveryby" id="<?= @$row['id']; ?>" title="<?= @$row['deliveryby']; ?>">
-                                                    <?= @$row['deliveryby']; ?>
+                                                    <?= @$row['delivered_by']; ?>
                                                     <input type="hidden" id="prev_order_status_<?= @$row['id']; ?>" name="prev_order_status_" value="<?= @$row['status']; ?>">
                                                     <input type="hidden" id="order_id" name="order_id" value="<?php echo $row['id']; ?>"><label for="delivered"></label>
                                                 </td>
@@ -61,7 +60,7 @@ $response = curlcall($url, $content);
                                                         <option value="Cancelled" <?php if (@$row['status'] == "Cancelled") echo "SELECTED"; ?>>Cancelled</option>
                                                     </select>
                                                 </td>
-                                                <td><?= @$row['ordered']; ?></td>
+                                                <td><?= @$row['ordered_date']; ?></td>
                                             </tr>
                                     <?php   }
                                     } ?>
@@ -73,6 +72,35 @@ $response = curlcall($url, $content);
             </div>
         </div>
     </section>
+    <div class="modal fade bd-example-modal-lg" id="ordereitems" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Ordered Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="tblordereitems">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tfoot style="background-color: #e3eaef;">
+
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <form id="mediaorderform" class="needs-validation" novalidate="">
         <div class="modal fade bd-example-modal-lg" id="mediaorderformModalCenter" tabindex="-1" role="dialog" aria-labelledby="mediaorderformModalCenterTitle" aria-hidden="true">
@@ -134,7 +162,9 @@ $response = curlcall($url, $content);
                     </div>
                 </div>
             </div>
+            
     </form>
+    
 </div>
 
 <script>
@@ -176,5 +206,12 @@ $response = curlcall($url, $content);
         $(".deliveryby").focusout(function(e) {
             e.currentTarget.innerText = preText;
         });
+        $(".vieworderedproduct").click(function() {
+            debugger;
+     
+     var id = this.name;
+     vieworderedfood(id);
+
+ });
     });
 </script>

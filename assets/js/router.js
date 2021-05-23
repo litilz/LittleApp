@@ -2,7 +2,7 @@ $(document).ready(function () {
     window.onload = function () {
         var currentpath = window.location.pathname;
 
-        // if (currentpath == "/Little_App_New/Index.php") {
+        // if (currentpath == "/LittleApp/Index.php") {
 
         //     window.history.pushState(currentpath, 'Dashboard', '/Dashboad');
         // }

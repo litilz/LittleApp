@@ -176,7 +176,7 @@ if (!isset($_SESSION['id'])) {
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="../Little_App_New/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                            <img alt="image" src="../LittleApp/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -196,11 +196,11 @@ if (!isset($_SESSION['id'])) {
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <img alt="image" src="../Little_App_New/assets/img/avatar/logo.jpg" class="rounded-circle" style="width:30px;">&nbsp;&nbsp;
+                        <img alt="image" src="../LittleApp/assets/img/avatar/logo.jpg" class="rounded-circle" style="width:30px;">&nbsp;&nbsp;
                         <label style="font-weight:bold;font-size:15px;">Little App </lable>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <img alt="image" src="../Little_App_New/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1" style="width:30px">
+                        <img alt="image" src="../LittleApp/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1" style="width:30px">
 
                     </div>
                     <ul class="sidebar-menu">

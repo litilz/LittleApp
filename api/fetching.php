@@ -96,7 +96,7 @@ function fetchProducts($db)
 
 function allorders($db)
 {
-    $query = "SELECT o.id,u.`name`,u.phone,a.landmark,a.line1,a.city,a.country,a.pincode,a.state,o.`status`,o.total,o.date_ordered,o.deliveryby FROM `orders` as o LEFT JOIN `user` as u on o.user_id = u.id 
+    $query = "SELECT o.id,u.`name`,u.phone,a.landmark,a.line1,a.city,a.country,a.pincode,a.state,o.`status`,o.original,o.date_ordered,o.deliveryby FROM `orders` as o LEFT JOIN `user` as u on o.user_id = u.id 
     LEFT JOIN `address` as a on o.`address_id` =a.`id`";
     $result = $db->prepare($query);
     $result->execute();
@@ -132,7 +132,7 @@ function fetchMedia_orders($db, $n)
 {
 
 
-    $query = "SELECT * FROM `media_order`";
+    $query = "SELECT fo.id,fo.delivered_by,fo.status,fo.ordered_date,u.phone FROM food_order as fo LEFT JOIN user as u on fo.user_id=u.id";
     $result = $db->prepare($query);
     $result->execute();
 

@@ -268,7 +268,9 @@ if (isset($_POST['action'])) {
     }
     if ($_POST["action"] == "restaurant_restaurant_get") {
         $id =  $_POST['id'];
-        $query = "SELECT * FROM `restaurants` WHERE `id`= $id";
+        $query = "SELECT name,type,image,restaurant_loc,delivery_time,rating,min_order,phone,active,(SELECT GROUP_CONCAT(id)
+        FROM `restaurant_categories`
+        WHERE FIND_IN_SET(type, REPLACE(REPLACE((SELECT categories FROM `restaurants` where id=$id), ', ', ','), ' ,', ','))) as categories FROM `restaurants` where id=$id";
         $result = $pdo->prepare($query);
         $result->execute();
         $noOfRows = $result->rowCount();
